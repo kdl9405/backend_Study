@@ -49,3 +49,27 @@
     Aborted : 트랜잭션이 취소되고 실행 이전으로 돌아간 상태
 
     + Commit명령이 들어오면 Partially Committed 상태가 되고, 문제없이 Commit을 수행할 수 있으면 Committed상태로 전이된다. 그렇지 않으면 Failed 상태로 전이된다. 
+
+
+
+## 질문 1 : 트랜잭션을 롤백 가능하게 하려면 데이터베이스에서 쿼리를 어떤식으로 처리해야 할까요?
+
+    우선 트랜잭션으로 묶어서 쿼리를 처리해야합니다.
+    MySQL의 경우
+    
+    START TRANSACTION // 트랜잭션 시작
+    SELECT * FROM table; // 쿼리 1
+    DELETE FROM table WHERE ID = '1'; // 쿼리 2
+    SELECT * FROM table; // 쿼리 3
+    
+    이런 형식으로 트랜잭션을 시작하고 그 안에서 쿼리를 실행합니다.
+    만약 쿼리 실행에 문제가 발생한다면
+    
+    ROLLBACK;
+    을 사용해 트랜잭션 시작 전으로 되돌릴 수 있습니다.
+    
+    문제가 발생하지 않은 경우,
+    COMMIT;
+    으로 실행된 쿼리를 적용시킵니다.
+    
+    또는 쿼리 중간중간에 savepoint A 를 삽입하여, 세이브 포인트를 생성하고 ROLLBACK to A로 저장된 세이브 포인트로 되돌아 갈 수 있습니다.
