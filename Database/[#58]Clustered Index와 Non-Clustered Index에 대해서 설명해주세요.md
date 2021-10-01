@@ -13,7 +13,7 @@
 
     먼저 하나의 컬럼을 Clustered Index으로 선정하면, Index 순으로 테이블이 정렬됩니다.
     그 후 Root페이지와 Reaf페이지로 이루어진 Index 페이지로 구성됩니다.
-    Root페이지의 경우, Index Key와 Reaf 페이지의 번호를 갖고있으며 Index key에 따라 탐색해야 할 Reaf페이지를 매핑하는  합니다.
+    Root페이지의 경우, Index Key와 Reaf 페이지의 번호를 갖고있으며 Index key에 따라 탐색해야 할 Reaf페이지를 매핑하는 역할을 합니다.
     Reaf페이지는 데이터를 갖고 있는 페이지입니다.
     
     만약 Clustered Index를 이용한 탐색을 한다면, 먼저 Root페이지에서 탐색할 Index Key가 포함된 범위를 가진 Reaf 페이지를 찾습니다.
