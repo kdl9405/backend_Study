@@ -26,7 +26,7 @@
 
         : 여러 객체에서 공통으로 사용할 수 있는 기능을 구분하여, 재사용성을 높여주는 방법이다.
 
-    - POJP(Plain Old Java Object)방식
+    - POJO(Plain Old Java Object)방식
 
         : getter/setter을 가지는 단순한 java 오브젝트를 말하며, 별도의 인터페이스를 구현하거나 상속박을 필요가 없어 기존 라이브러리를 지원하기 용이하고 객체가 가볍다.
 
